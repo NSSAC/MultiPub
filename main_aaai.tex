@@ -1,0 +1,122 @@
+% main_iaai.tex
+\documentclass[letterpaper]{article}
+
+% --------------------------------------------------------------------
+% AAAI/IAAI class style
+% --------------------------------------------------------------------
+% Local copy of the AAAI 2026 style lives in aaai/aaai2026.sty
+\usepackage{aaai/aaai2026}
+
+% --------------------------------------------------------------------
+% Core font and layout packages (as required by AAAI template)
+% --------------------------------------------------------------------
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+
+% --------------------------------------------------------------------
+% Utility packages
+% --------------------------------------------------------------------
+\usepackage{etoolbox}   % CSV list processing (used in formats_aaai.tex)
+\usepackage{fancyhdr}   % custom page style for cover page
+\usepackage{xcolor}     % brand color for footer
+\usepackage{array}      % extended tabular column specs (>{...})
+
+% Brand color used on the cover footer
+\definecolor{uvaorange}{RGB}{232,119,34}
+
+% --------------------------------------------------------------------
+% Cover page configuration
+% --------------------------------------------------------------------
+% Global switch to enable/disable the TR-style cover page
+\newif\ifusecoverpage
+\usecoverpagetrue              % set \usecoverpagefalse for AAAI submission
+% \usecoverpagefalse
+
+% Load geometry only when cover is enabled (forbidden by AAAI for submission)
+\ifusecoverpage
+  \usepackage{geometry}
+\fi
+
+% Define the 'trcover' pagestyle (logo + footer text)
+% This file should only define page styles/macros, no \begin{document}
+\input{coverpage/coverpage_style}
+
+% --------------------------------------------------------------------
+% Author data
+% --------------------------------------------------------------------
+% Centralized author database: defines \AllAuthorData and stub \OneAuthor
+\input{authors_db}
+
+% Per-paper selection: comma-separated list of author IDs, no spaces
+\newcommand{\SelectedAuthors}{1,3,5,7,9}
+
+% --------------------------------------------------------------------
+% Venue-specific formatting
+% --------------------------------------------------------------------
+
+% IAAI/AAAI-specific author/affiliation formatting
+% Defines \iaaiauthorsaffiliations using \AllAuthorData + \SelectedAuthors
+\input{aaai/formats_aaai}
+
+% --------------------------------------------------------------------
+% Title and author metadata
+% --------------------------------------------------------------------
+\newcommand{\PaperTitle}{%
+  Title of the IAAI Paper%
+}
+
+\title{\PaperTitle}
+\iaaiauthorsaffiliations
+
+% --------------------------------------------------------------------
+% Abstract and executive summary (to be filled by authors)
+% --------------------------------------------------------------------
+% Use this environment for the AAAI/IAAI abstract that appears under the title.
+% Keep it focused on the research contribution, methods, and key results.
+\newcommand{\PaperAbstract}{%
+  TODO: Replace this placeholder with the paper abstract (150--250 words).
+  Summarize the problem, approach, main contributions, and key findings.
+}
+
+% Use this macro for the internal report executive summary used on the cover page
+% and possibly in an introductory section. Aim at senior leadership and analysts.
+\newcommand{\ExecutiveSummary}{%
+  TODO: Replace this placeholder with a 3--5 sentence executive summary.
+  Focus on the problem context, the framework or system you built,
+  critical capabilities or results, and the decision or policy relevance.
+  Avoid low-level implementation details; emphasize strategic impact.
+}
+
+% ====================================================================
+% Document body
+% ====================================================================
+\begin{document}
+
+% Coverpage (internal use only; disabled for AAAI submission)
+\ifusecoverpage
+  \input{coverpage/insert_coverpage}
+\fi
+
+% Construct title section
+\maketitle
+
+% Abstract section using the placeholder macro
+\begin{abstract}
+\PaperAbstract
+\end{abstract}
+
+
+% Optional debug line while testing selection:
+\noindent TEST: \IfAuthorSelected{2}{YES}{NO}
+
+Test body.
+
+\end{document}

@@ -1,0 +1,65 @@
+% formats/formats_iaai.tex
+% IAAI/AAAI formatting using authors_db.tex, with simple selection.
+%
+% Requires in main_iaai.tex:
+%   \usepackage{etoolbox}
+%   \input{authors_db}
+%   \newcommand{\SelectedAuthors}{1,2,3,4} % CSV, no spaces, no trailing comma
+%
+% Requires in authors_db.tex:
+%   \providecommand{\OneAuthor}[7]{} % no-op default
+%   \newcommand{\AllAuthorData}{...} % your existing author data
+%   \newcommand{\AffilText}[1]{...} % affiliation index -> text mapping
+
+% ---------- Helper: is an author ID selected? ----------
+% Usage: \IfAuthorSelected{<id>}{<code if yes>}{<code if no>}
+\newcommand{\IfAuthorSelected}[3]{%
+  \def\ResultFlag{0}%
+  \def\TargetID{#1}%
+  \def\do##1{%
+    \def\CurrentID{##1}%
+    \ifx\CurrentID\TargetID
+      \def\ResultFlag{1}%
+    \fi
+  }%
+  \expandafter\docsvlist\expandafter{\SelectedAuthors}%
+  \ifnum\ResultFlag=1
+    #2%
+  \else
+    #3%
+  \fi
+}
+
+% ---------- Author line with superscripts in \SelectedAuthors order ----------
+% #1 = ID, #2 = name, #3 = affiliation index string (e.g. "1" or "1,2")
+\newcommand{\iaaiauthorlist}{%
+  % For each ID in \SelectedAuthors ...
+  \def\do##1{%
+    \def\TargetID{##1}%
+    % ... redefine \OneAuthor to only print the matching ID once
+    \renewcommand{\OneAuthor}[7]{%
+      \def\CurrentID{####1}%
+      \ifx\CurrentID\TargetID
+        ####2\textsuperscript{\rm ####3}, %
+      \fi
+    }%
+    % Scan all authors; only the matching one prints
+    \AllAuthorData
+  }%
+  \expandafter\docsvlist\expandafter{\SelectedAuthors}%
+}
+
+% ---------- Affiliations block (no duplicates) ----------
+% Uses \AffilText{index} to print each affiliation only once
+% Assumes \AffilText is defined in authors_db.tex
+\newcommand{\iaaiaffilblock}{%
+  \textsuperscript{\rm 1}\AffilText{1}\\%
+  \textsuperscript{\rm 2}\AffilText{2}\\%
+  % Add more lines if you have more than 2 affiliations
+}
+
+% ---------- Single public command ----------
+\newcommand{\iaaiauthorsaffiliations}{%
+  \author{\iaaiauthorlist\\}%
+  \affiliations{\iaaiaffilblock}%
+}

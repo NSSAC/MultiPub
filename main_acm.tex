@@ -1,15 +1,101 @@
-% main_acm.tex
-\documentclass[sigconf]{acmart}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LaTeX Template for AAMAS-2026 (based on sample-sigconf.tex)
+%%% Prepared by the AAMAS-2026 Publication Chairs based on the version from AAMAS-2025. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% --------------------------------------------------------------------
+% Document class
+% --------------------------------------------------------------------
+%%% == IMPORTANT ==
+%%% Use the first variant below for the final paper (including author information).
+%%% Use the second variant below to anonymize your submission (no author information shown).
+%%% For further information on anonymity and double-blind reviewing, 
+%%% please consult the call for paper information:
+%%% https://cyprusconferences.org/aamas2026/submission-instructions/
 
-% Shared author data and formats
-\input{authors_db}          % defines \AllAuthorData and stub \OneAuthor
-\newcommand{\SelectedAuthors}{1,3,4}  % IDs to include in THIS paper
-\input{formats/formats_acm} % defines \acmauthors via \renewcommand{\OneAuthor}
+%%%% For anonymized submission, use this:
+%\documentclass[sigconf,anonymous]{acm/aamas} 
 
+%%%% For camera-ready, use this:
+\documentclass[sigconf]{acm/aamas}
+
+% --------------------------------------------------------------------
+% Core packages (many already included by aamas class)
+% --------------------------------------------------------------------
+\usepackage{balance}      % balance columns on the final page
+\usepackage{algorithm}    % algorithm environment
+\usepackage{algorithmic}  % algorithmic typesetting
+\usepackage{float}        % improved float placement control
+\usepackage{tikz}         % graphics and diagrams
+\usetikzlibrary{positioning,shapes,arrows,shadows,fit}
+\usepackage{ctable}       % complex table formatting
+\usepackage{array}        % extended array and tabular
+\usepackage{ulem}         % underlining and strikethrough
+\usepackage{ragged2e}     % improved ragged text alignment
+
+% Custom column type for right-aligned paragraph columns
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% --------------------------------------------------------------------
+% AAMAS-2026 copyright block (DO NOT CHANGE!)
+% --------------------------------------------------------------------
+\setcopyright{ifaamas}
+\acmConference[AAMAS '26]{Proc.\@ of the 25th International Conference
+on Autonomous Agents and Multiagent Systems (AAMAS 2026)}{May 25 -- 29, 2026}
+{Paphos, Cyprus}{C.~Amato, L.~Dennis, V.~Mascardi, J.~Thangarajah (eds.)}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmDOI{}
+\acmPrice{}
+\acmISBN{}
+
+% --------------------------------------------------------------------
+% Submission information
+% --------------------------------------------------------------------
+%%% == IMPORTANT ==
+%%% Use this command to specify your submission number.
+%%% In anonymous mode, it will be printed on the first page.
+\acmSubmissionID{1162}
+
+% --------------------------------------------------------------------
+% Cover page configuration (internal use only)
+% --------------------------------------------------------------------
+% Load geometry only when cover is enabled (may conflict with ACM class)
+\newif\ifusecoverpage
+\usecoverpagetrue              % set \usecoverpagefalse to skip cover
+
+\ifusecoverpage
+  \usepackage{geometry}        % temporary margin adjustments for cover
+\fi
+
+\usepackage{fancyhdr}          % custom page styles
+\usepackage{xcolor}            % color support for branding
+
+% Brand color for cover page footer
+\definecolor{uvaorange}{RGB}{232,119,34}
+
+% Define the 'trcover' pagestyle (logo + footer text)
+\input{coverpage/coverpage_style}
+
+% --------------------------------------------------------------------
+% Author data and venue-specific formatting
+% --------------------------------------------------------------------
+% Centralized author database: defines \AllAuthorData and stub \OneAuthor
+\input{authors_db}
+
+% Per-paper selection: comma-separated list of author IDs, no spaces
+% Authors will appear in the order specified here
+\newcommand{\SelectedAuthors}{2,9,4,6,8,10}
+
+% ACM/AAMAS-specific author/affiliation formatting
+% Defines \acmauthors using \AllAuthorData + \SelectedAuthors
+\input{acm/formats_acm}
+
+% --------------------------------------------------------------------
+% Title and author metadata
+% --------------------------------------------------------------------
 \newcommand{\PaperTitle}{%
-  A Novel Framework for Synthesizing Shallow Technology Dependency Networks (STDNs)
-  for Disruption Analysis of Global Manufacturing and Trade Networks%
+  Temp ACM Title%
 }
 
 \title{\PaperTitle}
@@ -17,16 +103,43 @@
 % Populate ACM author and affiliation metadata from shared data
 \acmauthors
 
+% --------------------------------------------------------------------
+% Abstract and executive summary (to be filled by authors)
+% --------------------------------------------------------------------
+% Use this environment for the ACM/AAMAS abstract that appears under the title.
+% Keep it focused on the research contribution, methods, and key results.
+\newcommand{\PaperAbstract}{%
+  TODO: Replace this placeholder with the paper abstract (150--250 words).
+  Summarize the problem, approach, main contributions, and key findings.
+}
+
+% Use this macro for the internal report executive summary used on the cover page
+% and possibly in an introductory section. Aim at senior leadership and analysts.
+\newcommand{\ExecutiveSummary}{%
+  TODO: Replace this placeholder with a 3--5 sentence executive summary.
+  Focus on the problem context, the framework or system you built,
+  critical capabilities or results, and the decision or policy relevance.
+  Avoid low-level implementation details; emphasize strategic impact.
+}
+
+% ====================================================================
+% Document body
+% ====================================================================
 \begin{document}
 
+% Coverpage (internal use only; comment out for submission)
+\ifusecoverpage
+  \input{coverpage/insert_coverpage}
+\fi
+
+% Abstract section using the placeholder macro
 \begin{abstract}
-This is a short ACM-style demo document showing how authors
-are populated from a shared data source.
+\PaperAbstract
 \end{abstract}
 
+% Construct title section
 \maketitle
 
-\section{Introduction}
-Body text here.
+Test body.
 
 \end{document}
