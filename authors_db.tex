@@ -1,0 +1,31 @@
+% authors_db.tex
+% Shared author data and affiliation mapping.
+% Requires: \usepackage{etoolbox} in the main preamble.
+
+\providecommand{\OneAuthor}[7]{}  % default no-op; will be redefined by formats
+
+% Data: #1=ID, #2=name, #3=affil-index string (e.g., "1" or "1,2"),
+%       #4=affiliation text, #5=city, #6=country, #7=email
+\newcommand{\AllAuthorData}{%
+  \OneAuthor{1}{Aaron Schroeder}{1}%
+    {Biocomplexity Institute and Initiative, University of Virginia}%
+    {Charlottesville}{United States}{ads7fg@virginia.edu}%
+  \OneAuthor{2}{Dustin Machi}{1}%
+    {Biocomplexity Institute and Initiative, University of Virginia}%
+    {Charlottesville}{United States}{dm8qs@virginia.edu}%
+  \OneAuthor{3}{Margaret Foster}{2}%
+    {National Security Data \& Policy Institute, University of Virginia}%
+    {Charlottesville}{United States}{mfoster@virginia.edu}%
+  \OneAuthor{4}{Philip Potter}{2}%
+    {National Security Data \& Policy Institute, University of Virginia}%
+    {Charlottesville}{United States}{ppotter@virginia.edu}%
+}
+
+% Affiliation index -> text mapping used by IAAI/AAAI formatter.
+\newcommand{\AffilText}[1]{%
+  \ifcase#1 %
+    \or Biocomplexity Institute and Initiative, University of Virginia%
+    \or National Security Data \& Policy Institute, University of Virginia%
+    % \or <affil 3> ...
+  \fi
+}

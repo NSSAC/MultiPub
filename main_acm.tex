@@ -1,0 +1,32 @@
+% main_acm.tex
+\documentclass[sigconf]{acmart}
+
+
+% Shared author data and formats
+\input{authors_db}          % defines \AllAuthorData and stub \OneAuthor
+\newcommand{\SelectedAuthors}{1,3,4}  % IDs to include in THIS paper
+\input{formats/formats_acm} % defines \acmauthors via \renewcommand{\OneAuthor}
+
+\newcommand{\PaperTitle}{%
+  A Novel Framework for Synthesizing Shallow Technology Dependency Networks (STDNs)
+  for Disruption Analysis of Global Manufacturing and Trade Networks%
+}
+
+\title{\PaperTitle}
+
+% Populate ACM author and affiliation metadata from shared data
+\acmauthors
+
+\begin{document}
+
+\begin{abstract}
+This is a short ACM-style demo document showing how authors
+are populated from a shared data source.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+Body text here.
+
+\end{document}
