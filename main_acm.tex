@@ -32,6 +32,7 @@
 \usepackage{array}        % extended array and tabular
 \usepackage{ulem}         % underlining and strikethrough
 \usepackage{ragged2e}     % improved ragged text alignment
+\usepackage{natbib}
 
 % Custom column type for right-aligned paragraph columns
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
@@ -137,9 +138,14 @@ on Autonomous Agents and Multiagent Systems (AAMAS 2026)}{May 25 -- 29, 2026}
 \PaperAbstract
 \end{abstract}
 
-% Construct title section
 \maketitle
 
-Test body.
+Test body. Here are some references: \cite{fierceelectronics2022, aghaei2025potential}
 
+
+%\bibliographystyle{plainnat}
+\setcitestyle{authoryear}
+\bibliography{references}
+\bibliographystyle{ACM-Reference-Format} 
 \end{document}
+
