@@ -61,12 +61,14 @@ on Autonomous Agents and Multiagent Systems (AAMAS 2026)}{May 25 -- 29, 2026}
 % --------------------------------------------------------------------
 % Cover page configuration (internal use only)
 % --------------------------------------------------------------------
-% Load geometry only when cover is enabled (may conflict with ACM class)
+% Global switch to enable/disable the TR-style cover page
 \newif\ifusecoverpage
-\usecoverpagetrue              % set \usecoverpagefalse to skip cover
+\usecoverpagetrue              % set \usecoverpagefalse for AAAI submission
+% \usecoverpagefalse
 
+% Load geometry only when cover is enabled (forbidden by AAAI for submission)
 \ifusecoverpage
-  \usepackage{geometry}        % temporary margin adjustments for cover
+  \usepackage{geometry}
 \fi
 
 \usepackage{fancyhdr}          % custom page styles
@@ -100,6 +102,11 @@ on Autonomous Agents and Multiagent Systems (AAMAS 2026)}{May 25 -- 29, 2026}
 }
 
 \title{\PaperTitle}
+
+% BI Technical Report Number
+\newcommand{\TRNumber}{
+  BI-2025-99
+}
 
 % Populate ACM author and affiliation metadata from shared data
 \acmauthors
